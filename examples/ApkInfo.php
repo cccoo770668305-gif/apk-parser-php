@@ -21,7 +21,7 @@ echo "Version           : " . $manifest->getVersionName() . " (" . $manifest->ge
 echo "Min Sdk Level     : " . $manifest->getMinSdkLevel() . "" . PHP_EOL;
 echo "Min Sdk Platform  : " . $manifest->getMinSdk()->platform . "" . PHP_EOL;
 echo "Target Sdk Level     : " . $manifest->getTargetSdkLevel() . "" . PHP_EOL;
-echo "Target Sdk Platform  : " . $manifest->getTargetSdk()->platform . "" . PHP_EOL;
+echo "Target Sdk Platform  : " . ($manifest->getTargetSdk() ? $manifest->getTargetSdk()->platform : '') . "" . PHP_EOL;
 echo PHP_EOL;
 echo "------------- Permssions List -------------" . PHP_EOL;
 

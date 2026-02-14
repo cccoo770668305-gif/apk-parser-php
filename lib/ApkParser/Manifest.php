@@ -103,8 +103,13 @@ class Manifest extends Xml
     public function getMinSdkLevel()
     {
         $xmlObj = $this->getXmlObject();
-        $usesSdk = get_object_vars($xmlObj->{'uses-sdk'});
-        return hexdec($usesSdk['@attributes']['minSdkVersion']);
+        if (isset($xmlObj->{'uses-sdk'})) {
+            $usesSdk = get_object_vars($xmlObj->{'uses-sdk'});
+            if (isset($usesSdk['@attributes']['minSdkVersion'])) {
+                return hexdec($usesSdk['@attributes']['minSdkVersion']);
+            }
+        }
+        return 0;
     }
 
     /**
@@ -147,7 +152,7 @@ class Manifest extends Xml
                 }
             }
         }
-        return $this->meta[$name];
+        return isset($this->meta[$name]) ? $this->meta[$name] : null;
     }
 
     /**
@@ -179,8 +184,12 @@ class Manifest extends Xml
     public function getTargetSdkLevel()
     {
         $xmlObj = $this->getXmlObject();
-        $usesSdk = get_object_vars($xmlObj->{'uses-sdk'});
-        if (hexdec($usesSdk['@attributes']['targetSdkVersion'])) return hexdec($usesSdk['@attributes']['targetSdkVersion']);
+        if (isset($xmlObj->{'uses-sdk'})) {
+            $usesSdk = get_object_vars($xmlObj->{'uses-sdk'});
+            if (isset($usesSdk['@attributes']['targetSdkVersion'])) {
+                return hexdec($usesSdk['@attributes']['targetSdkVersion']);
+            }
+        }
         return null;
     }
 

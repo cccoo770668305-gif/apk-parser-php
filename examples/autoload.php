@@ -10,7 +10,12 @@
  */
 
 spl_autoload_register(function ($className) {
-    // Fix for OSX and *nix
-    $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
-    include(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . $className . ".php");
+    if (strpos($className, 'ApkParser') === 0) {
+        // Fix for OSX and *nix
+        $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
+        $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . $className . ".php";
+        if (file_exists($file)) {
+            include($file);
+        }
+    }
 });
