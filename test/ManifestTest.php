@@ -21,7 +21,7 @@ class ManifestTest extends \PHPUnit\Framework\TestCase
     {
         $mock = $this->getMockBuilder('ApkParser\XmlParser')
             ->disableOriginalConstructor()
-            ->setMethods(array('getXmlString'))
+            ->onlyMethods(array('getXmlString'))
             ->getMock();
 
         $file = __DIR__ . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'meta.xml';
