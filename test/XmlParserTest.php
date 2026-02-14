@@ -10,11 +10,9 @@
  */
 class XmlParserTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @expectedException ApkParser\Exceptions\XmlParserException
-     */
     public function testXmlObject()
     {
+        $this->expectException(\ApkParser\Exceptions\XmlParserException::class);
         $mock = $this->getMockBuilder('ApkParser\XmlParser')
             ->disableOriginalConstructor()
             ->setMethods(array('getXmlString'))
